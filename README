@@ -1,0 +1,2 @@
+lolIRC is a library in C++ that provides an easy interface to the IRC protocol.
+This library tries to implement as closely as possible the RFC1459 and the RFC2812.
