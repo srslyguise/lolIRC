@@ -172,6 +172,61 @@ namespace lolIRC {
 					private:
 						void callHandler(lolIRC_Channel&);
 				};
+				
+
+				//Errors start
+
+				class lolIRC_Response_ERR_NEEDMOREPARAMS : public lolIRC_Client::lolIRC_Response_Numeric
+				{
+					DEFINE_RESPONSE_NUMERIC(lolIRC_Response_ERR_NEEDMOREPARAMS);
+				};
+
+				class lolIRC_Response_ERR_BANNEDFROMCHAN : public lolIRC_Client::lolIRC_Response_Numeric
+				{
+					DEFINE_RESPONSE_NUMERIC(lolIRC_Response_ERR_BANNEDFROMCHAN);
+				};
+
+				class lolIRC_Response_ERR_INVITEONLYCHAN : public lolIRC_Client::lolIRC_Response_Numeric
+				{
+					DEFINE_RESPONSE_NUMERIC(lolIRC_Response_ERR_INVITEONLYCHAN);
+				};
+
+				class lolIRC_Response_ERR_BADCHANNELKEY : public lolIRC_Client::lolIRC_Response_Numeric
+				{
+					DEFINE_RESPONSE_NUMERIC(lolIRC_Response_ERR_BADCHANNELKEY);
+				};
+
+				class lolIRC_Response_ERR_CHANNELISFULL : public lolIRC_Client::lolIRC_Response_Numeric
+				{
+					DEFINE_RESPONSE_NUMERIC(lolIRC_Response_ERR_CHANNELISFULL);
+				};
+
+				class lolIRC_Response_ERR_BADCHANMASK : public lolIRC_Client::lolIRC_Response_Numeric
+				{
+					DEFINE_RESPONSE_NUMERIC(lolIRC_Response_ERR_BADCHANMASK);
+				};
+
+				class lolIRC_Response_ERR_NOSUCHCHANNEL : public lolIRC_Client::lolIRC_Response_Numeric
+				{
+					DEFINE_RESPONSE_NUMERIC(lolIRC_Response_ERR_NOSUCHCHANNEL);
+				};
+
+				class lolIRC_Response_ERR_TOOMANYCHANNELS : public lolIRC_Client::lolIRC_Response_Numeric
+				{
+					DEFINE_RESPONSE_NUMERIC(lolIRC_Response_ERR_TOOMANYCHANNELS);
+				};
+
+				class lolIRC_Response_ERR_TOOMANYTARGETS : public lolIRC_Client::lolIRC_Response_Numeric
+				{
+					DEFINE_RESPONSE_NUMERIC(lolIRC_Response_ERR_TOOMANYTARGETS);
+				};
+
+				class lolIRC_Response_ERR_UNAVAILRESOURCE : public lolIRC_Client::lolIRC_Response_Numeric
+				{
+					DEFINE_RESPONSE_NUMERIC(lolIRC_Response_ERR_UNAVAILRESOURCE);
+				};
+
+				//Errors End
 
 				//Responses End
 
