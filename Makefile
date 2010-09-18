@@ -41,7 +41,7 @@ test/test: test/test.cpp src/lolIRC.o src/lolIRC_responses.o src/lolIRC_messages
 	$(CC) $(CFLAGS) -o test/test test/test.cpp src/lolIRC.o src/lolIRC_responses.o src/lolIRC_messages.o src/lolIRC_connection.o src/lolIRC_parser.o src/lolIRC_channel.o src/lolIRC_nick.o $(LIBS)
 
 clean:
-	rm src/*.o
-	rm test/test_parser
-	rm test/test_connection
-	rm test/test
+	rm -f src/*.o
+	rm -f test/test_parser
+	rm -f test/test_connection
+	rm -f test/test
