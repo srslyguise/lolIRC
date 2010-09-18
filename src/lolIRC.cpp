@@ -275,6 +275,18 @@ void lolIRC::Client::lolIRC_Client::initResponses()
 	responses.push_back(new lolIRC_Response_RPLTOPIC_WHOTIME(*this, 333)); //Not standard, defined by ircu
 	responses.push_back(new lolIRC_Response_RPLNAMREPLY(*this, 353));
 	responses.push_back(new lolIRC_Response_RPLENDOFNAMES(*this, 366));
+
+	//Errors
+	responses.push_back(new lolIRC_Response_ERR_NEEDMOREPARAMS(*this, 461));
+	responses.push_back(new lolIRC_Response_ERR_BANNEDFROMCHAN(*this, 474));
+	responses.push_back(new lolIRC_Response_ERR_INVITEONLYCHAN(*this, 473));
+	responses.push_back(new lolIRC_Response_ERR_BADCHANNELKEY(*this, 475));
+	responses.push_back(new lolIRC_Response_ERR_CHANNELISFULL(*this, 471));
+	responses.push_back(new lolIRC_Response_ERR_BADCHANMASK(*this, 476));
+	responses.push_back(new lolIRC_Response_ERR_NOSUCHCHANNEL(*this, 403));
+	responses.push_back(new lolIRC_Response_ERR_TOOMANYCHANNELS(*this, 405));
+	responses.push_back(new lolIRC_Response_ERR_TOOMANYTARGETS(*this, 407));
+	responses.push_back(new lolIRC_Response_ERR_UNAVAILRESOURCE(*this, 437));
 }
 
 void lolIRC::Client::lolIRC_Client::freeResponses() //Free the dynamic memory
