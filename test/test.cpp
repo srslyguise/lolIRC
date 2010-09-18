@@ -45,6 +45,18 @@ int main()
 
 uint32_t sh(lolIRC_Client& c, lolIRC_Client::lolIRC_Server_Response r, ...)
 {
+	va_list ap;
+
+	va_start(ap, r);
+
+	switch(r)
+	{
+		case lolIRC_Client::ERR_NEEDMOREPARAMS:
+			std::cout << "Error, " << va_arg(ap, char *) << ": Not enough parameters" << std::endl;
+		break;
+	}
+
+	va_end(ap);
 }
 
 uint32_t ch(lolIRC_Client& c, std::string name, lolIRC_Client::lolIRC_Channel_Response r, ...)
