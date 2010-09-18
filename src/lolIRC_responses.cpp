@@ -3,6 +3,7 @@
 #include <ctime>
 #include <sstream>
 
+//Textual start
 //Ping start
 void lolIRC::Client::lolIRC_Client::lolIRC_Response_Ping::doIt(lolIRC_Message& m)
 {
@@ -37,7 +38,9 @@ void lolIRC::Client::lolIRC_Client::lolIRC_Response_Join::doIt(lolIRC_Message& m
 	DEBUG_PRINT(client[ch.c_str()][nk.c_str()].getUser());
 }
 //Join end
+//Textual end
 
+//Numeric start
 //RPLTOPIC start
 void lolIRC::Client::lolIRC_Client::lolIRC_Response_RPLTOPIC::doIt(lolIRC_Message& m)
 {
@@ -163,3 +166,180 @@ void lolIRC::Client::lolIRC_Client::lolIRC_Response_RPLENDOFNAMES::callHandler(l
 	(*client.ch)(client, c.getChannelName(), USERLIST, us.c_str());
 }
 //RPLENDOFNAMES end
+//Numeric end
+
+//Errors start
+
+void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_NEEDMOREPARAMS::doIt(lolIRC_Message& m)
+{
+	std::list<std::string>::iterator it = m.parameters.begin(); //List of parameters
+
+	DEBUG_PRINT("ERR_NEEDMOREPARAMS -> You're doing it very wrong!!1!");
+	it++; //Command Name
+
+	(*client.sh)(client, ERR_NEEDMOREPARAMS, (*it).c_str());
+}
+
+void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_BANNEDFROMCHAN::doIt(lolIRC_Message& m)
+{
+	std::list<std::string>::iterator it = m.parameters.begin(); //List of parameters
+
+	it++; //Channel name
+
+	for(std::list<lolIRC_Channel>::iterator i = client.channels.begin(); i != client.channels.end(); i++)
+	{
+		if(!((*i).getChannelName().compare(*it)))
+		{
+			DEBUG_PRINT("ERR_BANNEDFROMCHAN -> Erasing channel -> " << (*i).getChannelName());
+
+			(*client.sh)(client, ERR_BANNEDFROMCHAN, (*i).getChannelName().c_str());
+			client.channels.erase(i);
+			return;
+		}
+	}
+}
+
+void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_INVITEONLYCHAN::doIt(lolIRC_Message& m)
+{
+	std::list<std::string>::iterator it = m.parameters.begin(); //List of parameters
+
+	it++; //Channel name
+
+	for(std::list<lolIRC_Channel>::iterator i = client.channels.begin(); i != client.channels.end(); i++)
+	{
+		if(!((*i).getChannelName().compare(*it)))
+		{
+			DEBUG_PRINT("ERR_INVITEONLYCHAN -> Erasing channel -> " << (*i).getChannelName());
+
+			(*client.sh)(client, ERR_INVITEONLYCHAN, (*i).getChannelName().c_str());
+			client.channels.erase(i);
+			return;
+		}
+	}
+}
+
+void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_BADCHANNELKEY::doIt(lolIRC_Message& m)
+{
+	std::list<std::string>::iterator it = m.parameters.begin(); //List of parameters
+
+	it++; //Channel name
+
+	for(std::list<lolIRC_Channel>::iterator i = client.channels.begin(); i != client.channels.end(); i++)
+	{
+		if(!((*i).getChannelName().compare(*it)))
+		{
+			DEBUG_PRINT("ERR_BADCHANNELKEY -> Erasing channel -> " << (*i).getChannelName());
+
+			(*client.sh)(client, ERR_BADCHANNELKEY, (*i).getChannelName().c_str());
+			client.channels.erase(i);
+			return;
+		}
+	}
+}
+
+void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_CHANNELISFULL::doIt(lolIRC_Message& m)
+{
+	std::list<std::string>::iterator it = m.parameters.begin(); //List of parameters
+
+	it++; //Channel name
+
+	for(std::list<lolIRC_Channel>::iterator i = client.channels.begin(); i != client.channels.end(); i++)
+	{
+		if(!((*i).getChannelName().compare(*it)))
+		{
+			DEBUG_PRINT("ERR_CHANNELISFULL -> Erasing channel -> " << (*i).getChannelName());
+
+			(*client.sh)(client, ERR_CHANNELISFULL, (*i).getChannelName().c_str());
+			client.channels.erase(i);
+			return;
+		}
+	}
+}
+
+void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_BADCHANMASK::doIt(lolIRC_Message& m)
+{
+	std::list<std::string>::iterator it = m.parameters.begin(); //List of parameters
+
+	it++; //Channel name
+
+	for(std::list<lolIRC_Channel>::iterator i = client.channels.begin(); i != client.channels.end(); i++)
+	{
+		if(!((*i).getChannelName().compare(*it)))
+		{
+			DEBUG_PRINT("ERR_BADCHANMASK -> Erasing channel -> " << (*i).getChannelName());
+
+			(*client.sh)(client, ERR_BADCHANMASK, (*i).getChannelName().c_str());
+			client.channels.erase(i);
+			return;
+		}
+	}
+}
+
+void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_NOSUCHCHANNEL::doIt(lolIRC_Message& m)
+{
+	std::list<std::string>::iterator it = m.parameters.begin(); //List of parameters
+
+	it++; //Channel name
+
+	for(std::list<lolIRC_Channel>::iterator i = client.channels.begin(); i != client.channels.end(); i++)
+	{
+		if(!((*i).getChannelName().compare(*it)))
+		{
+			DEBUG_PRINT("ERR_NOSUCHCHANNEL -> Erasing channel -> " << (*i).getChannelName());
+
+			(*client.sh)(client, ERR_NOSUCHCHANNEL, (*i).getChannelName().c_str());
+			client.channels.erase(i);
+			return;
+		}
+	}
+}
+
+void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_TOOMANYCHANNELS::doIt(lolIRC_Message& m)
+{
+	std::list<std::string>::iterator it = m.parameters.begin(); //List of parameters
+
+	it++; //Channel name
+
+	for(std::list<lolIRC_Channel>::iterator i = client.channels.begin(); i != client.channels.end(); i++)
+	{
+		if(!((*i).getChannelName().compare(*it)))
+		{
+			DEBUG_PRINT("ERR_TOOMANYCHANNELS -> Erasing channel -> " << (*i).getChannelName());
+
+			(*client.sh)(client, ERR_TOOMANYCHANNELS, (*i).getChannelName().c_str());
+			client.channels.erase(i);
+			return;
+		}
+	}
+}
+
+void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_TOOMANYTARGETS::doIt(lolIRC_Message& m)
+{
+	std::list<std::string>::iterator it = m.parameters.begin(); //List of parameters
+
+	DEBUG_PRINT("ERR_TOOMANYTARGETS -> You're doing it very wrong!!1!");
+	it++; //Target
+
+	(*client.sh)(client, ERR_TOOMANYTARGETS, (*it).c_str());
+}
+
+void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_UNAVAILRESOURCE::doIt(lolIRC_Message& m)
+{
+	std::list<std::string>::iterator it = m.parameters.begin(); //List of parameters
+
+	it++; //Channel/nick name
+
+	for(std::list<lolIRC_Channel>::iterator i = client.channels.begin(); i != client.channels.end(); i++)
+	{
+		if(!((*i).getChannelName().compare(*it)))
+		{
+			DEBUG_PRINT("ERR_UNAVAILRESOURCE -> Erasing channel -> " << (*i).getChannelName());
+			client.channels.erase(i);
+			return;
+		}
+	}
+
+	(*client.sh)(client, ERR_UNAVAILRESOURCE, (*it).c_str());
+}
+
+//Errors end
