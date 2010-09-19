@@ -288,6 +288,7 @@ void lolIRC::Client::lolIRC_Client::initResponses()
 	responses.push_back(new lolIRC_Response_ERR_TOOMANYCHANNELS(*this, 405));
 	responses.push_back(new lolIRC_Response_ERR_TOOMANYTARGETS(*this, 407));
 	responses.push_back(new lolIRC_Response_ERR_UNAVAILRESOURCE(*this, 437));
+	responses.push_back(new lolIRC_Response_ERR_NOTONCHANNEL(*this, 442));
 }
 
 void lolIRC::Client::lolIRC_Client::freeResponses() //Free the dynamic memory
