@@ -1,3 +1,7 @@
+ * GLOBAL
+	Add SSL support
+	Write all the server part
+
  * lolIRC.hpp
 	Define all the lolIRC_Channel_Response.
 	Define all the lolIRC_Server_Response.
