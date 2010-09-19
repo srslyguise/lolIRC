@@ -35,7 +35,7 @@ namespace lolIRC {
 				void Send(std::string); //Send a message
 
 				lolIRC_Nick& operator[](const char *);//Get single nick with lolIRC_Nick["nickname"]
-
+				lolIRC_Channel& operator<<(std::string);//Same of send
 			private:
 				lolIRC_Channel(lolIRC_Connection&);
 				lolIRC_Channel(lolIRC_Connection&, std::string, std::string); //Parameters are the main connection, the channel name and the current nick
