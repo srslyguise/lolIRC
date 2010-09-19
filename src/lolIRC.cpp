@@ -115,6 +115,8 @@ uint32_t lolIRC::Client::lolIRC_Client::Connect()
 
 void lolIRC::Client::lolIRC_Client::Close()
 {
+	connection.Close();
+
 	sh = NULL;
 	ch = NULL;
 	mh = NULL;
@@ -122,7 +124,6 @@ void lolIRC::Client::lolIRC_Client::Close()
 	freeResponses(); //Free the dynamic memory
 
 	r_thread = 0;
-	connection.Close();
 }
 
 lolIRC::Client::lolIRC_Channel& lolIRC::Client::lolIRC_Client::operator[](const char * chan_name)
