@@ -192,11 +192,12 @@ void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_BANNEDFROMCHAN::doIt(lol
 		{
 			DEBUG_PRINT("ERR_BANNEDFROMCHAN -> Erasing channel -> " << (*i).getChannelName());
 
-			(*client.sh)(client, ERR_BANNEDFROMCHAN, (*i).getChannelName().c_str());
 			client.channels.erase(i);
 			return;
 		}
 	}
+
+	(*client.sh)(client, ERR_BANNEDFROMCHAN, (*it).c_str());
 }
 
 void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_INVITEONLYCHAN::doIt(lolIRC_Message& m)
@@ -211,11 +212,12 @@ void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_INVITEONLYCHAN::doIt(lol
 		{
 			DEBUG_PRINT("ERR_INVITEONLYCHAN -> Erasing channel -> " << (*i).getChannelName());
 
-			(*client.sh)(client, ERR_INVITEONLYCHAN, (*i).getChannelName().c_str());
 			client.channels.erase(i);
 			return;
 		}
 	}
+
+	(*client.sh)(client, ERR_INVITEONLYCHAN, (*it).c_str());
 }
 
 void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_BADCHANNELKEY::doIt(lolIRC_Message& m)
@@ -230,11 +232,12 @@ void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_BADCHANNELKEY::doIt(lolI
 		{
 			DEBUG_PRINT("ERR_BADCHANNELKEY -> Erasing channel -> " << (*i).getChannelName());
 
-			(*client.sh)(client, ERR_BADCHANNELKEY, (*i).getChannelName().c_str());
 			client.channels.erase(i);
 			return;
 		}
 	}
+
+	(*client.sh)(client, ERR_BADCHANNELKEY, (*it).c_str());
 }
 
 void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_CHANNELISFULL::doIt(lolIRC_Message& m)
@@ -249,11 +252,12 @@ void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_CHANNELISFULL::doIt(lolI
 		{
 			DEBUG_PRINT("ERR_CHANNELISFULL -> Erasing channel -> " << (*i).getChannelName());
 
-			(*client.sh)(client, ERR_CHANNELISFULL, (*i).getChannelName().c_str());
 			client.channels.erase(i);
 			return;
 		}
 	}
+
+	(*client.sh)(client, ERR_CHANNELISFULL, (*it).c_str());
 }
 
 void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_BADCHANMASK::doIt(lolIRC_Message& m)
@@ -268,11 +272,12 @@ void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_BADCHANMASK::doIt(lolIRC
 		{
 			DEBUG_PRINT("ERR_BADCHANMASK -> Erasing channel -> " << (*i).getChannelName());
 
-			(*client.sh)(client, ERR_BADCHANMASK, (*i).getChannelName().c_str());
 			client.channels.erase(i);
 			return;
 		}
 	}
+
+	(*client.sh)(client, ERR_BADCHANMASK, (*it).c_str());
 }
 
 void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_NOSUCHCHANNEL::doIt(lolIRC_Message& m)
@@ -287,11 +292,12 @@ void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_NOSUCHCHANNEL::doIt(lolI
 		{
 			DEBUG_PRINT("ERR_NOSUCHCHANNEL -> Erasing channel -> " << (*i).getChannelName());
 
-			(*client.sh)(client, ERR_NOSUCHCHANNEL, (*i).getChannelName().c_str());
 			client.channels.erase(i);
 			return;
 		}
 	}
+
+	(*client.sh)(client, ERR_NOSUCHCHANNEL, (*it).c_str());
 }
 
 void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_TOOMANYCHANNELS::doIt(lolIRC_Message& m)
@@ -306,11 +312,12 @@ void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_TOOMANYCHANNELS::doIt(lo
 		{
 			DEBUG_PRINT("ERR_TOOMANYCHANNELS -> Erasing channel -> " << (*i).getChannelName());
 
-			(*client.sh)(client, ERR_TOOMANYCHANNELS, (*i).getChannelName().c_str());
 			client.channels.erase(i);
 			return;
 		}
 	}
+
+	(*client.sh)(client, ERR_TOOMANYCHANNELS, (*it).c_str());
 }
 
 void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_TOOMANYTARGETS::doIt(lolIRC_Message& m)
@@ -340,6 +347,26 @@ void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_UNAVAILRESOURCE::doIt(lo
 	}
 
 	(*client.sh)(client, ERR_UNAVAILRESOURCE, (*it).c_str());
+}
+
+void lolIRC::Client::lolIRC_Client::lolIRC_Response_ERR_NOTONCHANNEL::doIt(lolIRC_Message& m)
+{
+	std::list<std::string>::iterator it = m.parameters.begin(); //List of parameters
+
+	it++; //Channel name
+
+	for(std::list<lolIRC_Channel>::iterator i = client.channels.begin(); i != client.channels.end(); i++)
+	{
+		if(!((*i).getChannelName().compare(*it)))
+		{
+			DEBUG_PRINT("ERR_NOTONCHANNEL -> Erasing channel -> " << (*i).getChannelName());
+
+			client.channels.erase(i);
+			return;
+		}
+	}
+
+	(*client.sh)(client, ERR_NOTONCHANNEL, (*it).c_str());
 }
 
 //Errors end
