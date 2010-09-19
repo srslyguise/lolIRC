@@ -39,7 +39,6 @@ namespace lolIRC {
 				typedef enum lolIRC_Server_Response{
 					USERINVITE = 1,
 					MOTD = 10,
-					ERR_NEEDMOREPARAMS = 0xbad,
 					ERR_BANNEDFROMCHAN,
 					ERR_INVITEONLYCHAN,
 					ERR_BADCHANNELKEY,
@@ -48,8 +47,7 @@ namespace lolIRC {
 					ERR_NOSUCHCHANNEL,
 					ERR_TOOMANYCHANNELS,
 					ERR_TOOMANYTARGETS,
-					ERR_UNAVAILRESOURCE,
-					ERR_NOTONCHANNEL
+					ERR_UNAVAILRESOURCE
 				}lolIRC_Server_Response; //All kind of possible responses from the server
 
 				typedef uint32_t (*lolIRC_ServerHandler)(lolIRC_Client&, lolIRC_Server_Response, ...); //Handler for server messages
