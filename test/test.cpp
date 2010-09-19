@@ -26,7 +26,7 @@ int main()
 		client.Connect();
 		client.joinChannel("#lolling", "lollingkey");
 		client["#lolling"].setTopic("LOL");
-		client["#lolling"].Send("LULZ");
+		client["#lolling"] << "LULZ" << "LOLZ";
 		
 		while(client)
 		{
