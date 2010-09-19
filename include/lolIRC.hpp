@@ -94,6 +94,7 @@ namespace lolIRC {
 
 				pthread_t r_thread; //Thread descriptor
 
+				//Handlers
 				lolIRC_ServerHandler sh;
 				lolIRC_ChannelHandler ch;
 				lolIRC_MsgHandler mh;
