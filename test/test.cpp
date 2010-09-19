@@ -51,8 +51,8 @@ uint32_t sh(lolIRC_Client& c, lolIRC_Client::lolIRC_Server_Response r, ...)
 
 	switch(r)
 	{
-		case lolIRC_Client::ERR_NEEDMOREPARAMS:
-			std::cout << "Error, " << va_arg(ap, char *) << ": Not enough parameters" << std::endl;
+		case lolIRC_Client::ERR_BADCHANNELKEY:
+			std::cout << va_arg(ap, char *) << " -> Bad channel key" << std::endl;
 		break;
 	}
 
