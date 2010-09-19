@@ -39,7 +39,7 @@ namespace lolIRC {
 				typedef enum lolIRC_Server_Response{
 					USERINVITE = 1,
 					MOTD = 10,
-					ERR_BANNEDFROMCHAN,
+					ERR_BANNEDFROMCHAN = 0xbad,
 					ERR_INVITEONLYCHAN,
 					ERR_BADCHANNELKEY,
 					ERR_CHANNELISFULL,
