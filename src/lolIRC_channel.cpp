@@ -119,3 +119,9 @@ lolIRC::Client::lolIRC_Nick& lolIRC::Client::lolIRC_Channel::operator[](const ch
 
 	throw lolIRC_Exception("lolIRC: lolIRC_Channel: Invalid nickname");
 }
+
+lolIRC::Client::lolIRC_Channel& lolIRC::Client::lolIRC_Channel::operator<<(std::string str)
+{
+	Send(str);
+	return *this;
+}
