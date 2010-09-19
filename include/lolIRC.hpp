@@ -48,7 +48,8 @@ namespace lolIRC {
 					ERR_NOSUCHCHANNEL,
 					ERR_TOOMANYCHANNELS,
 					ERR_TOOMANYTARGETS,
-					ERR_UNAVAILRESOURCE
+					ERR_UNAVAILRESOURCE,
+					ERR_NOTONCHANNEL
 				}lolIRC_Server_Response; //All kind of possible responses from the server
 
 				typedef uint32_t (*lolIRC_ServerHandler)(lolIRC_Client&, lolIRC_Server_Response, ...); //Handler for server messages
@@ -224,6 +225,11 @@ namespace lolIRC {
 				class lolIRC_Response_ERR_UNAVAILRESOURCE : public lolIRC_Client::lolIRC_Response_Numeric
 				{
 					DEFINE_RESPONSE_NUMERIC(lolIRC_Response_ERR_UNAVAILRESOURCE);
+				};
+
+				class lolIRC_Response_ERR_NOTONCHANNEL : public lolIRC_Client::lolIRC_Response_Numeric
+				{
+					DEFINE_RESPONSE_NUMERIC(lolIRC_Response_ERR_NOTONCHANNEL);
 				};
 
 				//Errors End
