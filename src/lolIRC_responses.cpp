@@ -1,3 +1,10 @@
+/***************************************************************************
+ * Copyleft EDX. http://edx.shellmix.com, edx1010@gmail.com
+ *
+ * You like this software? Do what you want under the terms of
+ * GNU General Public License.
+ ***************************************************************************/
+
 #include <lolIRC.hpp>
 #include <cstdlib>
 #include <ctime>
