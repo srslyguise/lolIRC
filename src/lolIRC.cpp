@@ -11,11 +11,11 @@
 
 //lolIRC_Client Start
 
-lolIRC::Client::lolIRC_Client::lolIRC_Client() : sh(NULL), ch(NULL), mh(NULL), server_name(""), nick(""), user(""), port(6667), r_thread(0)
+lolIRC::Client::lolIRC_Client::lolIRC_Client() : sh(NULL), ch(NULL), mh(NULL), server_name(""), nick(""), user(""), real_name(""), port(6667), r_thread(0)
 {
 }
 
-lolIRC::Client::lolIRC_Client::lolIRC_Client(std::string s, uint16_t port = 6667): sh(NULL), ch(NULL), mh(NULL), nick(""), user(""), r_thread(0)
+lolIRC::Client::lolIRC_Client::lolIRC_Client(std::string s, uint16_t port = 6667): sh(NULL), ch(NULL), mh(NULL), nick(""), user(""), real_name(""), r_thread(0)
 {
 	server_name = s;
 	this->port = port;
