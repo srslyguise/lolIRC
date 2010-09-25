@@ -81,6 +81,16 @@ std::string lolIRC::Client::lolIRC_Client::getUser() const
 	return user;
 }
 
+uint32_t lolIRC::Client::lolIRC_Client::setRealName(std::string rn)
+{
+	real_name = rn;
+}
+
+std::string lolIRC::Client::lolIRC_Client::getRealName() const
+{
+	return real_name;
+}
+
 uint32_t lolIRC::Client::lolIRC_Client::Connect()
 {
 	uint32_t ret = 0;
@@ -111,6 +121,9 @@ uint32_t lolIRC::Client::lolIRC_Client::Connect()
 	}
 
 	initResponses(); //Init the response list
+
+	Nick(this->nick);
+	User(this->user, this->real_name, getMode(MODE_SET|MODE_INVISIBLE));
 }
 
 void lolIRC::Client::lolIRC_Client::Close()
@@ -152,7 +165,7 @@ uint32_t lolIRC::Client::lolIRC_Client::joinChannel(std::string chan_name, std::
 			throw lolIRC_Exception("lolIRC: lolIRC_Client: Already joined to channel");
 
 	channels.push_back(c);
-	join(chan_name, key);
+	Join(chan_name, key);
 }
 
 void lolIRC::Client::lolIRC_Client::closeChannel(std::string chan_name)
@@ -161,7 +174,7 @@ void lolIRC::Client::lolIRC_Client::closeChannel(std::string chan_name)
 		if(!((*i).getChannelName().compare(chan_name))) //If the channel is in the list
 		{
 			channels.erase(i); //Delete it
-			part(chan_name);
+			Part(chan_name);
 			return;
 		}
 
@@ -303,6 +316,35 @@ std::string lolIRC::Client::lolIRC_Client::upper(std::string s)
 		(*i) = std::toupper(*i);
 
 	return s;
+}
+
+std::string lolIRC::Client::lolIRC_Client::getMode(uint16_t mode)
+{
+	std::string tmp = "";
+
+	if(mode & MODE_SET)
+		tmp += '+';
+	else
+		tmp += '-';
+
+	if(mode & MODE_AWAY)
+		tmp += 'a';
+	if(mode & MODE_INVISIBLE)
+		tmp += 'i';
+	if(mode & MODE_WALLOPS)
+		tmp += 'w';
+	if(mode & MODE_RESTRICTED)
+		tmp += 'r';
+	if(mode & MODE_OP)
+		tmp += 'o';
+	if(mode & MODE_OP_LOCAL)
+		tmp += 'O';
+	if(mode & MODE_NOTICE)
+		tmp += 's';
+
+	DEBUG_PRINT("getMode : mode -> " << tmp);
+
+	return tmp;
 }
 
 //lolIRC_Client::Other End
