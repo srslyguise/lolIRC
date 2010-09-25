@@ -10,9 +10,6 @@
 
  * lolIRC_nick.hpp
 	Define possible actions on nick.
-
- * lolIRC.cpp
-	Complete Connect() function with the proper messages(NICK, USER).
 	
  * lolIRC_channel.cpp
 	Write function ModeChan.
