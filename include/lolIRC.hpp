@@ -18,6 +18,15 @@
 
 #define DEFINE_RESPONSE_NUMERIC(X) public: X(lolIRC_Client& c, uint16_t n) : lolIRC_Response_Numeric(c, n) {} virtual void doIt(lolIRC_Message&);
 
+#define MODE_SET	1<<0
+#define MODE_AWAY	1<<1
+#define MODE_INVISIBLE	1<<2
+#define MODE_WALLOPS	1<<3
+#define MODE_RESTRICTED	1<<4
+#define MODE_OP		1<<5
+#define MODE_OP_LOCAL	1<<6
+#define MODE_NOTICE	1<<7
+
 namespace lolIRC {
 	namespace Client {
 
@@ -72,8 +81,10 @@ namespace lolIRC {
 
 				uint32_t setNick(std::string);
 				uint32_t setUser(std::string);
+				uint32_t setRealName(std::string);
 				std::string getNick() const;
 				std::string getUser() const;
+				std::string getRealName() const;
 
 				//Main Functions
 				uint32_t Connect();
@@ -106,6 +117,7 @@ namespace lolIRC {
 
 				std::string nick;
 				std::string user;
+				std::string real_name;
 
 				class lolIRC_Response //Abstract Class for generic responses
 				{
@@ -239,11 +251,14 @@ namespace lolIRC {
 				void initResponses(); //Init the list of responses
 				void freeResponses(); //Free the dynamic memory of responses list
 				std::string upper(std::string); //Return an uppercase string
+				std::string getMode(uint16_t);
 
-				//Messages start
-				void join(std::string, std::string);
-				void part(std::string);
-				//Messages end
+				//Private Messages start
+				void Join(std::string, std::string);
+				void Part(std::string);
+				void Nick(std::string);
+				void User(std::string, std::string, std::string);
+				//Private Messages end
 		};
 
 	}
