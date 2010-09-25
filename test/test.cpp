@@ -22,6 +22,7 @@ int main()
 
 		client.setNick("lolz");
 		client.setUser("lolz");
+		client.setRealName("lolz lulz");
 
 		client.Connect();
 		client.joinChannel("#lolling", "lollingkey");
@@ -30,6 +31,7 @@ int main()
 		
 		while(client)
 		{
+			sleep(1);
 		}
 
 		client.Close();
