@@ -3,6 +3,7 @@
 #include <exception>
 #include <cstdarg>
 #include <sstream>
+#include <list>
 
 using namespace lolIRC::Client;
 
@@ -66,6 +67,7 @@ uint32_t ch(lolIRC_Client& c, std::string name, lolIRC_Client::lolIRC_Channel_Re
 	va_list ap;
 	std::stringstream ss;
 	std::string tmp;
+	std::list<std::string> names = c[name.c_str()].Names();
 
 	va_start(ap, r);
 
@@ -95,6 +97,17 @@ uint32_t ch(lolIRC_Client& c, std::string name, lolIRC_Client::lolIRC_Channel_Re
 
 		case lolIRC_Client::USERJOIN:
 			std::cout << name << " -> " << va_arg(ap, char *) << " has joined" << std::endl;
+			std::cout << "Users on channel " << name << ":" << std::endl;
+			for(std::list<std::string>::iterator i = names.begin(); i != names.end(); i++)
+				std::cout << *i << std::endl;
+		break;
+
+		case lolIRC_Client::USERPART:
+			std::cout << name << " -> " << va_arg(ap, char *) << " has left: ";
+			std::cout << va_arg(ap, char *) << std::endl;
+			std::cout << "Users on channel " << name << ":" << std::endl;
+			for(std::list<std::string>::iterator i = names.begin(); i != names.end(); i++)
+				std::cout << *i << std::endl;
 		break;
 	}
 
