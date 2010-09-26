@@ -35,6 +35,7 @@ namespace lolIRC {
 			public:
 				typedef enum lolIRC_Channel_Response{
 					USERJOIN = 1,
+					USERPART,
 					USERQUIT,
 					USERMODE,
 					USERMSG,
@@ -158,6 +159,13 @@ namespace lolIRC {
 				class lolIRC_Response_Join : public lolIRC_Client::lolIRC_Response_Textual //Join response
 				{
 					DEFINE_RESPONSE_TEXTUAL(lolIRC_Response_Join);
+				};
+
+				class lolIRC_Response_Part : public lolIRC_Client::lolIRC_Response_Textual //Part response
+				{
+					DEFINE_RESPONSE_TEXTUAL(lolIRC_Response_Part);
+					private:
+					void removeNick(lolIRC_Channel&, std::string);
 				};
 
 				class lolIRC_Response_RPLTOPIC : public lolIRC_Client::lolIRC_Response_Numeric //Topic reponse after join
