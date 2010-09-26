@@ -283,6 +283,7 @@ void lolIRC::Client::lolIRC_Client::initResponses()
 	//Textual
 	responses.push_back(new lolIRC_Response_Ping(*this, "PING"));
 	responses.push_back(new lolIRC_Response_Join(*this, "JOIN"));
+	responses.push_back(new lolIRC_Response_Part(*this, "PART"));
 
 	//Numeric
 	responses.push_back(new lolIRC_Response_RPLTOPIC(*this, 332));
