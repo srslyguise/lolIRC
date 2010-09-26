@@ -38,13 +38,40 @@ void lolIRC::Client::lolIRC_Client::lolIRC_Response_Join::doIt(lolIRC_Message& m
 			(*client.ch)(client, (*i).getChannelName(), USERJOIN, m.prefix.start.c_str());
 		}
 	}
-
-	//Debugging
-	std::string ch = m.parameters.front();
-	std::string nk = m.prefix.start;
-	DEBUG_PRINT(client[ch.c_str()][nk.c_str()].getUser());
 }
 //Join end
+
+//Part Start
+void lolIRC::Client::lolIRC_Client::lolIRC_Response_Part::doIt(lolIRC_Message& m)
+{
+	std::list<std::string>::iterator it = m.parameters.begin();
+
+	for(std::list<lolIRC_Channel>::iterator i = client.channels.begin(); i != client.channels.end(); i++)
+	{
+		if(!((*i).getChannelName().compare(*it)))//If the channel is in the list...
+		{
+			removeNick(*i, m.prefix.start);
+			it++; //Part message
+
+			if(m.parameters.size() == 2)
+				(*client.ch)(client, (*i).getChannelName(), USERPART, m.prefix.start.c_str(), (*it).c_str());
+			else
+				(*client.ch)(client, (*i).getChannelName(), USERPART, m.prefix.start.c_str(), "");
+		}
+	}
+}
+
+void lolIRC::Client::lolIRC_Client::lolIRC_Response_Part::removeNick(lolIRC_Channel& c, std::string nickname)
+{
+	for(std::list<lolIRC_Nick>::iterator i = c.nicknames.begin(); i != c.nicknames.end(); i++)
+		if(!((*i).getUser().compare(nickname)))
+		{
+			DEBUG_PRINT("lolIRC_Response_Part::removeNick: Removing -> " << nickname);
+			c.nicknames.erase(i);
+			return;
+		}
+}
+//Part End
 //Textual end
 
 //Numeric start
