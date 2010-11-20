@@ -11,9 +11,9 @@ uint32_t sh(lolIRC_Client&, lolIRC_Client::lolIRC_Server_Response, ...);
 uint32_t ch(lolIRC_Client&, std::string, lolIRC_Client::lolIRC_Channel_Response, ...);
 uint32_t mh(lolIRC_Client&, std::string, std::string);
 
-int main()
+int main(int argc, char ** argv)
 {
-	lolIRC_Client client("127.0.0.1", 6667);
+	lolIRC_Client client(argv[1], 6667);
 
 	try
 	{
@@ -21,14 +21,14 @@ int main()
 		client.setChannelHandler(ch);
 		client.setMsgHandler(mh);
 
-		client.setNick("lolz");
-		client.setUser("lolz");
+		client.setNick("lolzlolzlalz");
+		client.setUser("lolzlolzlalz");
 		client.setRealName("lolz lulz");
 
 		client.Connect();
-		client.joinChannel("#lolling", "lollingkey");
+		/*client.joinChannel("#lolling", "lollingkey");
 		client["#lolling"].setTopic("LOL");
-		client["#lolling"] << "LULZ" << "LOLZ";
+		client["#lolling"] << "LULZ" << "LOLZ"; */
 		
 		while(client)
 		{
