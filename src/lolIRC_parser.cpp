@@ -176,7 +176,7 @@ void lolIRC::Client::lolIRC_Parser::fillCommand(std::string s, lolIRC_Message& m
 
 uint32_t lolIRC::Client::lolIRC_Parser::isValidNick(std::string s)
 {
-	size_t f = s.find_first_not_of("0123456789-[]\\`^{}ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"); //Valid characters
+	size_t f = s.find_first_not_of(".0123456789-[]\\`^{}ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"); //Valid characters
 
 	if(!isalpha(s[0])) //First character MUST be an alphabetic character
 		throw lolIRC_Exception("lolIRC: Parser: Invalid nick");
